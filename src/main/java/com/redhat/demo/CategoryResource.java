@@ -85,7 +85,7 @@ public class CategoryResource {
             log.debugf("Path ID is %d whereas category ID is %d", id, category.id);
             throw new WebApplicationException("Category ID is not equal to persisted category ID.", 422);
         }
-        category = category.getEntityManager().merge(category);
+        category = Category.getEntityManager().merge(category);
         category.modified = LocalDateTime.now();
         category.persist();
         return category;
