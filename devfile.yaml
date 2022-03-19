@@ -30,7 +30,6 @@ components:
     - name: http
       targetPort: 8080
       protocol: http
-      path: '/swagger-ui'
     - name: 'debug'
       targetPort: 5005
       exposure: internal
@@ -39,6 +38,7 @@ components:
       value: "-Xmx512m"
     # odo image
     # image: registry.access.redhat.com/ubi8/openjdk-11
+    # crw image
     image: registry.redhat.io/codeready-workspaces/plugin-java11-rhel8:latest
     memoryLimit: 768Mi
     mountSources: true
@@ -80,13 +80,13 @@ metadata:
   version: 1.1.0
   website: https://quarkus.io
 # Remove for odo
-projects:
-  - name: product-catalog-server
-    git:
-      remotes:
-        origin: "https://github.com/gnunn-gitops/product-catalog-server.git"
-      checkoutFrom:
-        revision: master
+# projects:
+#   - name: product-catalog-server
+#     git:
+#       remotes:
+#         origin: "https://github.com/gnunn-gitops/product-catalog-server.git"
+#       checkoutFrom:
+#         revision: master
 schemaVersion: 2.0.0
 starterProjects:
 - name: community
