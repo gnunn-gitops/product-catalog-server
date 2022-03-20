@@ -3,6 +3,16 @@
   <groupId>com.redhat.demo</groupId>
   <artifactId>product-catalog-server</artifactId>
   <version>1.0.0-SNAPSHOT</version>
+  <distributionManagement>
+    <repository>
+      <id>nexus-releases</id>
+      <url>${repository.releases}</url>
+    </repository>
+    <snapshotRepository>
+      <id>nexus-snapshots</id>
+      <url>${repository.snapshots}</url>
+    </snapshotRepository>
+  </distributionManagement>
   <properties>
     <compiler-plugin.version>3.8.1</compiler-plugin.version>
     <failsafe.useModulePath>false</failsafe.useModulePath>
@@ -31,7 +41,6 @@
 
     <!-- jacoco properties -->
     <quarkus.jacoco.excludes>**/com/redhat/demo/OpenShiftSettings.java</quarkus.jacoco.excludes>
-
   </properties>
   <dependencyManagement>
     <dependencies>
