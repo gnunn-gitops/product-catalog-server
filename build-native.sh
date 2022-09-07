@@ -1,1 +1,0 @@
-./mvnw package -Pnative -Dquarkus.native.container-build=true -Dquarkus.native.container-runtime=podman -Dquarkus.native.native-image-xmx=8g
