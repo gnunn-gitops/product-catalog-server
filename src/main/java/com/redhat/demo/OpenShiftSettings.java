@@ -54,8 +54,10 @@ public class OpenShiftSettings {
 
         overrideCorsSetting();
 
+        log.infof("CORS enabled: %s", ConfigProvider.getConfig().getValue("quarkus.http.cors", String.class));
         log.infof("Using host %s for cors origin",
                 ConfigProvider.getConfig().getValue("quarkus.http.cors.origins", String.class));
+
     }
 
     void onStop(@Observes ShutdownEvent ev) {
@@ -76,9 +78,9 @@ public class OpenShiftSettings {
             try {
                 routes = openshiftClient.routes().withLabelSelector(selector).list().getItems();
                 //Debug mockserver
-                if (routes == null || routes.isEmpty()) {
-                    routes = openshiftClient.routes().list().getItems();
-                }
+                // if (routes == null || routes.isEmpty()) {
+                //     routes = openshiftClient.routes().list().getItems();
+                // }
             } catch (Exception e) {
                 log.info("Unexpected error occurred retrieving routes, using environment variable CORS_ORIGIN", e);
                 return;
@@ -95,7 +97,7 @@ public class OpenShiftSettings {
             Route route = routes.get(0);
             String host = route.getSpec().getHost();
             boolean tls = false;
-            if (route.getSpec().getTls() != null && "".equals(route.getSpec().getTls().getTermination())) {
+            if (route.getSpec().getTls() != null && !"".equals(route.getSpec().getTls().getTermination())) {
                 tls = true;
             }
             String corsOrigin = (tls ? "https" : "http") + "://" + host;
