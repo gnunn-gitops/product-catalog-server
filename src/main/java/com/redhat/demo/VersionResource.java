@@ -16,7 +16,7 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 @Tag(name = "Products", description = "An API to return the version of the API")
 public class VersionResource {
 
-    public static final String VERSION = "1.3.12";
+    public static final String VERSION = "1.3.13";
 
     @GET
     @Operation(summary = "API Version", description = "Get API version")
